@@ -1,5 +1,5 @@
 // import { AlertasService } from './../service/alertas.service';
-// import { TemaService } from './../service/tema.service';
+import { TemaService } from './../service/tema.service';
 import { Tema } from './../model/Tema';
 import { Router } from '@angular/router';
 import { environment } from './../../environments/environment.prod';
@@ -17,7 +17,7 @@ export class TemaComponent implements OnInit {
 
   constructor(
     private router: Router,
-    // private temaService: TemaService,
+    private temaService: TemaService,
     // private alertas: AlertasService
   ) { }
 
@@ -31,22 +31,22 @@ export class TemaComponent implements OnInit {
     //   this.router.navigate(['/inicio'])
     // }
 
-//     this.findAllTemas()
-//   }
+    this.findAllTemas()
+  }
 
-//   findAllTemas(){
-//     this.temaService.getAllTema().subscribe((resp: Tema[]) => {
-//       this.listaTemas = resp
-//     })
-//   }
+  findAllTemas(){
+    this.temaService.getAllTema().subscribe((resp: Tema[]) => {
+      this.listaTemas = resp
+    })
+  }
 
-//   cadastrar(){
-//      this.temaService.postTema(this.tema).subscribe((resp: Tema)=>{
-//        this.tema = resp
-//        this.alertas.showAlertSuccess('Tema cadastrado com sucesso!')
-//        this.findAllTemas()
-//        this.tema = new Tema()
-//      })
+  cadastrar(){
+     this.temaService.postTema(this.tema).subscribe((resp: Tema)=>{
+       this.tema = resp
+      //  this.alertas.showAlertSuccess('Tema cadastrado com sucesso!')
+       this.findAllTemas()
+       this.tema = new Tema()
+     })
   }
 
 }
